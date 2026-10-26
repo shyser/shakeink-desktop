@@ -1,4 +1,5 @@
 import {commandContextsOverlap} from "./shortcut-context"
+import type { Settings } from "./settings"
 export type ShortcutScope = "global" | "text" | "markdown" | "composer" | "input"
 export interface ShortcutCommand { id: string; label: string; scope: ShortcutScope; locked: boolean; defaults: string[]; contexts?: Record<string, boolean> }
 export interface BindingConflict { command: ShortcutCommand; index: number; binding: string }
@@ -65,4 +66,11 @@ export function editBinding(commands: ShortcutCommand[], overrides: Record<strin
   }
   next[id] = index === undefined ? [...current, binding] : current.map((key, at) => at === index ? binding : key)
   return next
+}
+/** Restore-defaults: clears every custom binding in the platform's shortcut
+ * namespace. Callers must pass shortcutNamespace(platform), never the raw
+ * platform value: on Linux the live bindings live under win32, so clearing
+ * the raw "linux" key would leave the custom bindings in effect. */
+export function restoreDefaultShortcuts(before: Settings, namespace: "darwin" | "win32"): Settings {
+  return { ...before, shortcuts: { ...before.shortcuts, [namespace]: {} } }
 }

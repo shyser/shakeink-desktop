@@ -9,7 +9,7 @@
     "desktop/shared/command-registry.ts": "20560a2353153df3f87fa1c6d7b24ed57a1bc3365561b070e59f17615f20d34c",
     "desktop/shared/commands.json": "d9784c5fad0d4734706d73080a95bd8b595002eea082067399d221366fe793da",
     "src/components/editor/monaco-setup.ts": "8361a4c9c2d9e705715782dd7019b5731912f0605c3a49db3b3d438ca0ad4191",
-    "desktop/core/shortcuts.ts": "757127967a0f1c7f638a0639489ad30e729b0e44b32e6132133ffc1a07f6b706",
+    "desktop/core/shortcuts.ts": "4e07b022756fe9904568dd6f2d55cf8d1351a514f721acd3efbda7914a082f6c",
     "desktop/core/shortcut-context.ts": "61b18c806ddceaffdbd4f1f270a67862ea873eda529e4430e55b4d43d17f0be2",
     "node_modules/monaco-editor/package.json": "3555e3e0bc0d5f8c22be8f26164c11778dff0feabf564c67185726636f4b15c7"
   },

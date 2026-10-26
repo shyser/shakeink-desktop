@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/compone
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useDesktopStore, updateDesktopSettings } from "@/stores/desktop"
-import { bindingConflicts, bindingsFor, capturedKey, editBinding, shortcutNamespace, type BindingConflict, type ShortcutCommand } from "@desktop/core/shortcuts"
+import { bindingConflicts, bindingsFor, capturedKey, editBinding, restoreDefaultShortcuts, shortcutNamespace, type BindingConflict, type ShortcutCommand } from "@desktop/core/shortcuts"
 import { desktopCommandCatalog, desktopCatalogStatus, subscribeDesktopCommands } from "@/lib/desktop/command-runtime"
 interface Draft { id: string; index?: number; original?: string; binding: string }
 export function ShortcutSettings() {
@@ -154,7 +154,7 @@ export function ShortcutSettings() {
           <Button disabled={saving} onClick={async () => {
             if (pendingWrite.current) return
             pendingWrite.current = true; setSaving(true)
-            try { await updateDesktopSettings(before => ({ ...before, shortcuts: { ...before.shortcuts, [platform]: {} } })); setRestore(false) }
+            try { await updateDesktopSettings(before => restoreDefaultShortcuts(before, namespace)); setRestore(false) }
             catch (cause) { toast.error((cause as Error).message) }
             finally { pendingWrite.current = false; setSaving(false) }
           }}>恢复默认</Button>
